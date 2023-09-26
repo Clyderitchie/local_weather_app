@@ -36,7 +36,8 @@ document.querySelector('#city-search').addEventListener('submit', function (even
 function renderWeather(data) {
     for (var i = 0; i < 5; i++) {
         var cardHtml =
-            `<div class="card">
+            `<h3>Five Day Forcast: </h3>
+            <div class="card">
                 <img src='https://openweathermap.org/img/w/${data.weather[0].icon}.png' class=card-img-top alt='hi'>
                 <div class="card-body">
                     <h5 class=card-title>City: ${data.name}</h5>
