@@ -20,6 +20,7 @@ document.querySelector('#city-search').addEventListener('submit', function (even
             // console.log(data);
             renderWeather(data);
             todayweather(data);
+            searchHistory(city);
             var lon = data.coord.lon;
             var lat = data.coord.lat;
             // console.log(lon, lat);
@@ -30,13 +31,13 @@ document.querySelector('#city-search').addEventListener('submit', function (even
         })
 });
 
-
+// TODO: Needs to have updated weather for the next five days
 // function to call certain elements from the object to create a card within the html
 function renderWeather(data) {
     var cardHTML = ''
     for (var i = 0; i < 5; i++) {
-        cardHTML += 
-        `<div class="col-2">
+        cardHTML +=
+            `<div class="col-2">
             <h5>City: ${data.name}</h5>
             <p>Temp: ${data.main.temp} F</p>
             <p>Wind: ${data.wind.speed} MPH</p>
@@ -63,24 +64,26 @@ function todayweather(data) {
     document.querySelector('#today-forcast').setHTML(cardHtml);
 }
 
-
-// var cardHtml =
-//             `<h3>Five Day Forcast: </h3>
-//             <div class="card">
-//                 <img src='https://openweathermap.org/img/w/${data.weather[0].icon}.png' class=card-img-top alt='hi'>
-//                  <div class="card-body">
-//                     <h5 class=card-title>City: ${data.name}</h5>
-//                     <p class="card-text">Temp: ${data.main.temp} F</p>
-//                     <p class="card-text">Wind: ${data.wind.speed} MPH</p>
-//                     <p class="card-text">Humidity: ${data.main.humidity} %</p>
-//                  </div>
-//             </div>`
-//  document.querySelector('#day-forcast').setHTML(cardHtml);
-
-
-
 // TODO: Store last five of the user's searches
-
+function searchHistory(city) {
+    var search = JSON.parse(localStorage.getItem('city')) || [];
+    var newSearch = city;
+    if (newSearch) {
+        search.unshift(newSearch);
+    } 
+    if (search.length > 5) {
+        search = search.slice(0, 5);
+    }
+    localStorage.setItem('city', JSON.stringify(search));
+    var searchList = document.querySelector('#search-history');
+    searchList.innerHTML = '';
+    for (var i = 0; i < search.length; i++) {
+        var searchItem = document.createElement('p');
+        searchItem.textContent = search[i]
+        searchList.appendChild(searchItem);
+    }
+};
+searchHistory();
 
 // Then endpoint you will fetch to for current weather is:
 //  `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${city}&units=imperial`
