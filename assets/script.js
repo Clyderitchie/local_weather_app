@@ -2,9 +2,9 @@
 var apiKey = 'ea90873a3053ba7b4e31bea43946f0d1';
 var apiUrl = 'https://openweathermap.org/'
 var searchBar = document.querySelector('#search-bar');
-// TODO: add dayJS for the date 
+var date = dayjs().format('mm/DD/YY');
 
-
+// Allows for the user to search for a city using the OpenWeatherAPI to render resaults back
 document.querySelector('#city-search').addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -32,13 +32,13 @@ document.querySelector('#city-search').addEventListener('submit', function (even
 });
 
 // TODO: Needs to have updated weather for the next five days
-// function to call certain elements from the object to create a card within the html
+// Renders a five day forcast for the current city the user searched for
 function renderWeather(data) {
     var cardHTML = ''
     for (var i = 0; i < 5; i++) {
         cardHTML +=
             `<div class="col-2">
-            <h5>City: ${data.name}</h5>
+            <h5>${date} <img src='https://openweathermap.org/img/w/${data.weather[0].icon}.png' class=card-img-top alt='hi'> </h5> 
             <p>Temp: ${data.main.temp} F</p>
             <p>Wind: ${data.wind.speed} MPH</p>
             <p>Humidity: ${data.main.humidity} %</p>
@@ -48,12 +48,12 @@ function renderWeather(data) {
     document.querySelector('#fiveDay-forcast').setHTML(cardHTML);
 }
 
-// TODO: Render todays forcast
+// Renders the weather for the current date in it's conatainer
 function todayweather(data) {
     var cardHtml =
         `<div class="card">
-            <div class="card-header d-flex justify-content-start">
-            <h5 class=card-title>City: ${data.name}</h5> <img src='https://openweathermap.org/img/w/${data.weather[0].icon}.png' class=card-img-top alt='hi'>
+            <div class="card-header d-flex justify-content-start align-items-center pr-2">
+            <h5 class="card-title">${date}</h5><img src='https://openweathermap.org/img/w/${data.weather[0].icon}.png' class=card-img-top alt='hi'>
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Temp: ${data.main.temp} F</li>
@@ -64,7 +64,7 @@ function todayweather(data) {
     document.querySelector('#today-forcast').setHTML(cardHtml);
 }
 
-// TODO: Store last five of the user's searches
+// Saves user search history for the last five searches to localStorage
 function searchHistory(city) {
     var search = JSON.parse(localStorage.getItem('city')) || [];
     var newSearch = city;

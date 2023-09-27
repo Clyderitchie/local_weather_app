@@ -1,8 +1,15 @@
 * {
-    outline: 1px dashed  blue;
+    outline: 1px dashed blue;
 }
 
 .card img {
     height: fit-content;
     width: 10%;
 }
+
+.col-2 img {
+    height: fit-content;
+    width: 20%;
+}
+
+
