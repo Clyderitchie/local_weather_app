@@ -1,3 +1,8 @@
 * {
     outline: 1px dashed  blue;
 }
+
+.card img {
+    height: fit-content;
+    width: 10%;
+}
