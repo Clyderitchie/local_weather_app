@@ -16,10 +16,12 @@
         <h1>Weather Tracker</h1>
     </nav>
 
-    <!-- Container for the search bar and the user search history -->
-    <div class="container-md" id="user-input">
-        <div class="row d-flex justify-content-between">
-            <div class="col-3">
+    <!-- Overall Container -->
+    <div class="container">
+        <!-- First Row: City Search and Today Forcast -->
+        <div class="row">
+            <!-- Col one: Search for a city -->
+            <div class="col">
                 <h2>Search for a city</h2>
                 <form id="city-search">
                     <div class="input-group mb-3">
@@ -29,27 +31,19 @@
                         <input type="submit" class="form-control btn btn-primary" value="search">
                     </div>
                 </form>
-                <div class="col text-center" id="search-history">
-                    <!-- Where the localStorage for the users last five searches -->
-                </div>
             </div>
-    </div>
+            <!-- Col two: Today's Forcast -->
+            <div id="today-forcast" class="col"></div>
+        </div>
 
-    <div class="conatainer">
-        <div class="row d-flex justify-content-center align-items-center">
-            <!-- Container for todays forcast -->
-            <div id="today-forcast" class="col-9">
-            </div>
-        </div>
-        <!-- Container for 5 day forcast of the current city -->
-        <div id="fiveDay-forcast" class="col-9">
-            <!-- Where the cards for the five day forcast goes -->
-        </div>
+        <!-- Second Row: User search history and five day forcast -->
+        <div class="row">
+            <!-- Col one: User search history -->
+            <div id="search-history" class="col"></div>
+            <!-- Col two: Five day forcast -->
+            <div id="fiveDay-forcast" class="col"></div>
         </div>
     </div>
-
-
-
 
     <!-- Script links for BootStrap, Dayjs, and local Javascript file -->
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
