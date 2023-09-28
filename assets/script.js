@@ -2,7 +2,7 @@
 var apiKey = 'ea90873a3053ba7b4e31bea43946f0d1';
 var apiUrl = 'https://openweathermap.org/'
 var searchBar = document.querySelector('#search-bar');
-var date = dayjs().format('mm/DD/YY');
+var date = dayjs().format('MM/DD/YY');
 
 // Allows for the user to search for a city using the OpenWeatherAPI to render resaults back
 document.querySelector('#city-search').addEventListener('submit', function (event) {
@@ -53,9 +53,9 @@ function todayweather(data) {
     var cardHtml =
         `<div class="card">
             <div class="card-header d-flex justify-content-start align-items-center pr-2">
-            <h5 class="card-title">${date}</h5><img src='https://openweathermap.org/img/w/${data.weather[0].icon}.png' class=card-img-top alt='hi'>
+            <h5 class="card-title fw-3">${date}</h5><img src='https://openweathermap.org/img/w/${data.weather[0].icon}.png' class=card-img-top alt='hi'>
             </div>
-            <ul class="list-group list-group-flush">
+            <ul class="list-group list-group-flush fs-2">
               <li class="list-group-item">Temp: ${data.main.temp} F</li>
               <li class="list-group-item">Wind: ${data.wind.speed} MPH</li>
               <li class="list-group-item">Humidity: ${data.main.humidity} %</li>
@@ -70,7 +70,7 @@ function searchHistory(city) {
     var newSearch = city;
     if (newSearch) {
         search.unshift(newSearch);
-    } 
+    }
     if (search.length > 5) {
         search = search.slice(0, 5);
     }
