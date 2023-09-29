@@ -18,7 +18,7 @@ document.querySelector('#city-search').addEventListener('submit', function (even
         })
         .then(function (data) {
             // console.log(data);
-            renderWeather(data);
+            
             todayweather(data);
             searchHistory(city);
             var lon = data.coord.lon;
@@ -27,6 +27,7 @@ document.querySelector('#city-search').addEventListener('submit', function (even
             fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`)
                 .then(response => response.json())
                 .then(data => {
+                    renderWeather(data);
                 })
         })
 });
@@ -35,13 +36,13 @@ document.querySelector('#city-search').addEventListener('submit', function (even
 // Renders a five day forcast for the current city the user searched for
 function renderWeather(data) {
     var cardHTML = ''
-    for (var i = 0; i < 5; i++) {
+    for (var i = 2; i < data.list.length; i += 8) {
         cardHTML +=
             `<div class="col-2">
-            <h5>${date} <img src='https://openweathermap.org/img/w/${data.weather[0].icon}.png' class=card-img-top alt='hi'> </h5> 
-            <p>Temp: ${data.main.temp} F</p>
-            <p>Wind: ${data.wind.speed} MPH</p>
-            <p>Humidity: ${data.main.humidity} %</p>
+            <h5>${dayjs.unix(data.list[i].dt).format('MM/DD/YY')} <img src='https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png' class=card-img-top alt='hi'> </h5> 
+            <p>Temp: ${data.list[i].main.temp} F</p>
+            <p>Wind: ${data.list[i].wind.speed} MPH</p>
+            <p>Humidity: ${data.list[i].main.humidity} %</p>
         </div>
         `
     }
@@ -136,4 +137,4 @@ searchHistory();
 //     "id": 5812944,
 //     "name": "Tacoma",
 //     "cod": 200
-// }
+// } 
