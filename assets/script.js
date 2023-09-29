@@ -17,8 +17,6 @@ document.querySelector('#city-search').addEventListener('submit', function (even
             return response.json();
         })
         .then(function (data) {
-            // console.log(data);
-            
             todayweather(data);
             searchHistory(city);
             var lon = data.coord.lon;
@@ -32,7 +30,6 @@ document.querySelector('#city-search').addEventListener('submit', function (even
         })
 });
 
-// TODO: Needs to have updated weather for the next five days
 // Renders a five day forcast for the current city the user searched for
 function renderWeather(data) {
     var cardHTML = ''
@@ -86,7 +83,6 @@ function searchHistory(city) {
 };
 searchHistory();
 
-// Then endpoint you will fetch to for current weather is:
 //  `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${city}&units=imperial`
 //The endpoint for the forecast data will use lat and lon from the previous endpoint:
 // `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`
