@@ -38,7 +38,7 @@ function renderWeather(data) {
     var cardHTML = ''
     for (var i = 2; i < data.list.length; i += 8) {
         cardHTML +=
-            `<div class="col-2">
+        `<div class="col-2 border align-self-center">
             <h5>${dayjs.unix(data.list[i].dt).format('MM/DD/YY')} <img src='https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png' class=card-img-top alt='hi'> </h5> 
             <p>Temp: ${data.list[i].main.temp} F</p>
             <p>Wind: ${data.list[i].wind.speed} MPH</p>

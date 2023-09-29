@@ -1,6 +1,6 @@
-* {
+/* * {
     outline: 1px dashed blue;
-}
+} */
 
 .card img {
     height: fit-content;
@@ -13,3 +13,9 @@
 }
 
 
+#fiveDay-forcast {
+    display: flex;
+    justify-content: space-evenly;
+    /* outline: 1px black solid; */
+
+}
